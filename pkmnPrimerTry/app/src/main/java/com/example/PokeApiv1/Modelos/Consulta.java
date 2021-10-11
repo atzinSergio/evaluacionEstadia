@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Consulta {
     private String next;
-    private List<Results> results;
+    private List<PokeList> results;
 
     public String getNext() {
         return next;
     }
 
-    public List<Results> getResults() {
+    public List<PokeList> getResults() {
         return results;
     }
 }

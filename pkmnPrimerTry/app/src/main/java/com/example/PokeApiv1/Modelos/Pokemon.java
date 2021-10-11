@@ -1,9 +1,11 @@
 package com.example.PokeApiv1.Modelos;
 
+import java.util.List;
+
 public class Pokemon {
     private int id;
     private String name;
-    private Type types;
+    private List<Type> types;
     private Sprites front_default;
 
     public int getId() {
@@ -14,7 +16,7 @@ public class Pokemon {
         return name;
     }
 
-    public Type getTypes() {
+    public List<Type> getTypes() {
         return types;
     }
 
