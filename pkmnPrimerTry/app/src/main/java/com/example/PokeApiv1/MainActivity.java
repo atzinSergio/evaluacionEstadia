@@ -1,5 +1,6 @@
 package com.example.PokeApiv1;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListaPokemonAdapter listaPokemonAdapter;
     private Retrofit retrofit;
+    private boolean cargaLista;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,33 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy > 0){
+                    int visibleItemCount = layoutManager.getChildCount();
+                    int totalItemCount = layoutManager.getItemCount();
+                    int pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition();
+
+                    if(cargaLista){
+                        if((visibleItemCount + pastVisibleItems) >= totalItemCount){
+                            cargaLista = false;
+                            offset+=20;
+                            getPokemonList(offset);
+                        }
+                    }
+                }
+            }
+        });
 
          retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+         cargaLista = true;
+         offset = 0;
         getPokemonList(offset);
 
 
@@ -86,15 +110,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPokemonList(int offset){
         PokeApiService PokeApiServiceObj = retrofit.create(PokeApiService.class);
-        Call<Consulta> call = PokeApiServiceObj.getConsulta(35,offset);
+        Call<Consulta> call = PokeApiServiceObj.getConsulta(20,offset);
         call.enqueue(new Callback<Consulta>() {
             @Override
             public void onFailure(Call<Consulta> call, Throwable t) {
+                cargaLista = true;
                 //jsonText.setText(t.getMessage());
             }
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<Consulta> call, Response<Consulta> response) {
+                cargaLista = true;
                 if(!response.isSuccessful()){
                     return;
                 }
