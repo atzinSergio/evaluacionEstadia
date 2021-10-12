@@ -1,18 +1,29 @@
 package com.example.PokeApiv1;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import androidx.fragment.app.FragmentActivity;
 import android.media.Image;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.PokeApiV1.R;
 import com.example.PokeApiv1.Modelos.PokeList;
 import com.example.PokeApiv1.Modelos.Pokemon;
@@ -54,6 +65,12 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     @Override
     public void onBindViewHolder(final ListaPokemonAdapter.ViewHolder holder, final int position){
         holder.bindData(dataset.get(position));
+        Glide.with(context)
+                .load(dataset.get(position).getSprites().getFront_default())
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.pkmnImage);
+
     }
 
 
@@ -69,15 +86,183 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView pkmnImage;
         TextView pkmnName;
-        TextView pkmnTipos;
+        LinearLayout pkmnTipo1;
+        RelativeLayout pkmnTipo2;
         ViewHolder(View itemView){
             super(itemView);
             pkmnImage = itemView.findViewById(R.id.pokemonImage);
             pkmnName = itemView.findViewById(R.id.pokemonName);
-            pkmnTipos = itemView.findViewById(R.id.pkmnTipo);
+            pkmnTipo1 = itemView.findViewById(R.id.layoutPrimerTipo);
+            pkmnTipo2 = itemView.findViewById(R.id.layoutSegundoTipo);
+        }
+        void tipoFondo1(String name){
+            Drawable t1;
+            switch (name){
+                case "normal":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.normal);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "fighting":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.fighting);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "flying":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.flying);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "poison":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.poison);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "ground":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ground);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "rock":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.rock);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "bug":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.bug);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "ghost":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ghost);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "steel":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.steel);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "fire":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.fire);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "water":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.water);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "grass":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.grass);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "electric":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.electric);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "psychic":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.psychic);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "ice":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ice);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "dragon":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dragon);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "dark":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.dark);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+                case "fairy":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.fairy);
+                    pkmnTipo1.setBackground(t1);
+                    break;
+            }
+        }
+        void tipoFondo2(String name){
+            Drawable t1;
+            switch (name){
+                case "normal":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.snormal);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "fighting":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sfighting);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "flying":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sflying);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "poison":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.spoison);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "ground":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sground);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "rock":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.srock);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "bug":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sbug);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "ghost":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sghost);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "steel":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ssteel);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "fire":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sfire);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "water":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.swater);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "grass":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sgrass);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "electric":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.selectric);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "psychic":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.spsychic);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "ice":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sice);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "dragon":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sdragon);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "dark":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sdark);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+                case "fairy":
+                    t1 = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.sfairy);
+                    pkmnTipo2.setBackground(t1);
+                    break;
+            }
         }
 
         void bindData(final Pokemon item){
+            List<Types> tiposPokemon = item.getTypes();
+            Type tipoPokemon;
+            pkmnTipo1.setBackground(null);
+            pkmnTipo2.setBackground(null);
+            if(tiposPokemon.size() == 1){
+                tipoFondo1(tiposPokemon.get(0).getType().getName());
+            }else{
+                tipoFondo1(tiposPokemon.get(0).getType().getName());
+                tipoFondo2(tiposPokemon.get(1).getType().getName());
+            }
+
+
             /*List<Types>  listaTipos = item.getTypes(); //Un pokémon puede tener 1 o 2 tipos
             ArrayList<Type> tipoPkmn = new ArrayList<>(); //Cada tipo tiene un nombre y una URL
             String cadena = "";
@@ -87,7 +272,9 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
             for (Type tipo: tipoPkmn) {
                 cadena+= tipo.getName() + " " + "\n";
             }*/
-            pkmnName.setText(item.getName());
+            String input= item.getName();
+            String output = input.substring(0, 1).toUpperCase() + input.substring(1);
+            pkmnName.setText(output);
         }
     }
 

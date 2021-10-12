@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtTitulo = (TextView) findViewById(R.id.txtTitulo);
 
         recyclerView = (RecyclerView) findViewById(R.id.listRecyclerView);
         listaPokemonAdapter = new ListaPokemonAdapter(listaPokemon,this);
@@ -68,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Pokemon>() {
             @Override
             public void onFailure(Call<Pokemon> call, Throwable t) {
-                txtTitulo.setText(t.getMessage());
+                String mensaje = t.getMessage();
+                Toast toast = Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_LONG);
+                toast.show();
             }
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -77,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 Pokemon pokemonItem = response.body();
-                txtTitulo.setText(pokemonItem.getName());
                 listaPokemonAdapter.adicionarListaPokemon(pokemonItem);
             }
 

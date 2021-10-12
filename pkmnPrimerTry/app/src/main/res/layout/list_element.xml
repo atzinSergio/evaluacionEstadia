@@ -8,18 +8,16 @@
     app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:background="@color/purple_200"
+        android:id="@+id/layoutPrimerTipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:background="@color/teal_700"
-            android:id="@+id/LinearLayout1"
+            android:id="@+id/layoutSegundoTipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/pokemonImage"
                 android:layout_width="70dp"
@@ -30,6 +28,7 @@
                 android:layout_marginLeft="10dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="10dp"/>
+
             <LinearLayout
                 android:id="@+id/LinearLayout2"
                 android:layout_width="wrap_content"
@@ -41,30 +40,17 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="8dp"
                 android:layout_toRightOf="@+id/pokemonImage">
+
                 <TextView
                     android:id="@+id/pokemonName"
-                    android:inputType = "textCapSentences"
-                    android:text="Hola"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="20dp"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/pkmnTipo"
-                android:inputType = "textCapWords"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="75dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="132dp"
-                android:layout_toEndOf="@+id/LinearLayout2"
-                android:text="TextView" />
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

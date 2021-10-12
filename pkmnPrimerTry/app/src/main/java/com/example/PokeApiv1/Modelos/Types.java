@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Types {
-    private ArrayList<Type> type;
+    private int slot;
+    private Type type;
 
-    public ArrayList<Type> getType() {
+    public int getSlot() {
+        return slot;
+    }
+
+    public Type getType() {
         return type;
     }
 }
