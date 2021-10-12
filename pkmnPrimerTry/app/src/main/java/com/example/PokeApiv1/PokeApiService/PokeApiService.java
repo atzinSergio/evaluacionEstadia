@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface PokeApiService {
     @GET("pokemon")
-    Call<Consulta> getConsulta(@Query("offset") int offset, @Query("limit") int limit);
+    Call<Consulta> getConsulta(@Query("limit") int limit, @Query("offset") int offset);
 
     @GET("pokemon/{name}")
     Call<Pokemon> getPokemon(@Path("name")String name);

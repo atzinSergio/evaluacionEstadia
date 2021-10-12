@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:id="@+id/pokemonElement" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:background="@color/purple_200"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <RelativeLayout
+            android:background="@color/teal_700"
+            android:id="@+id/LinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/pokemonImage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="10dp"/>
+            <LinearLayout
+                android:id="@+id/LinearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/pokemonImage"
+                android:orientation="vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/pokemonImage">
+                <TextView
+                    android:id="@+id/pokemonName"
+                    android:inputType = "textCapSentences"
+                    android:text="Hola"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pkmnTipo"
+                android:inputType = "textCapWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="132dp"
+                android:layout_toEndOf="@+id/LinearLayout2"
+                android:text="TextView" />
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
