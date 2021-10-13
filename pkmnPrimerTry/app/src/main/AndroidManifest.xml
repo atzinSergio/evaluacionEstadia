@@ -4,18 +4,19 @@
 <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_logo"
         android:label="Pokédex"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PkmnPrimerTry">
-        <activity android:name="com.example.PokeApiv1.MainActivity">
+        <activity android:name="com.example.PokeApiv1.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.PokeApiv1.Activities.StatsActivity" />
     </application>
 
 </manifest>

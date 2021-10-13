@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:id="@+id/pokemonElement" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pokemonElement"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:id="@+id/layoutPrimerTipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:scrollbarThumbHorizontal="@color/gray"
+        android:scrollbarThumbVertical="@color/gray">
 
         <RelativeLayout
             android:id="@+id/layoutSegundoTipo"
@@ -27,7 +31,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:paddingLeft="4dp"
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp" />
 
             <LinearLayout
                 android:id="@+id/LinearLayout2"
@@ -35,18 +39,18 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="40dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@+id/pokemonImage"
-                android:orientation="vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@+id/pokemonImage">
+                android:layout_toRightOf="@+id/pokemonImage"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/pokemonName"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/deep_gray"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>

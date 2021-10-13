@@ -1,10 +1,7 @@
-package com.example.PokeApiv1;
+package com.example.PokeApiv1.Adaptador;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import androidx.fragment.app.FragmentActivity;
-import android.media.Image;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,28 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.PokeApiV1.R;
-import com.example.PokeApiv1.Modelos.PokeList;
 import com.example.PokeApiv1.Modelos.Pokemon;
 import com.example.PokeApiv1.Modelos.Type;
 import com.example.PokeApiv1.Modelos.Types;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -44,11 +30,13 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     private List<Pokemon> dataset;
     private LayoutInflater mInflater;
     private Context context;
+    private onPokemonListener mOnPokemonListener;
 
-    public ListaPokemonAdapter(List<Pokemon> dataset,Context context){
+    public ListaPokemonAdapter(List<Pokemon> dataset,Context context, onPokemonListener onPokemonListener){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.dataset = dataset;
+        this.mOnPokemonListener =  onPokemonListener;
     }
 
     @Override
@@ -59,7 +47,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     @Override
     public ListaPokemonAdapter.ViewHolder onCreateViewHolder (ViewGroup parent, int viewType){
         View view = mInflater.inflate(R.layout.list_element, null);
-        return new ListaPokemonAdapter.ViewHolder(view);
+        return new ListaPokemonAdapter.ViewHolder(view,mOnPokemonListener);
     }
 
     @Override
@@ -83,17 +71,20 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView pkmnImage;
         TextView pkmnName;
         LinearLayout pkmnTipo1;
         RelativeLayout pkmnTipo2;
-        ViewHolder(View itemView){
+        onPokemonListener onPokemonListener;
+        ViewHolder(View itemView, onPokemonListener onPokemonListener){
             super(itemView);
             pkmnImage = itemView.findViewById(R.id.pokemonImage);
             pkmnName = itemView.findViewById(R.id.pokemonName);
             pkmnTipo1 = itemView.findViewById(R.id.layoutPrimerTipo);
             pkmnTipo2 = itemView.findViewById(R.id.layoutSegundoTipo);
+            itemView.setOnClickListener(this);
+            this.onPokemonListener = onPokemonListener;
         }
         void tipoFondo1(String name){
             Drawable t1;
@@ -276,6 +267,14 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
             String output = input.substring(0, 1).toUpperCase() + input.substring(1);
             pkmnName.setText(output);
         }
+
+        @Override
+        public void onClick(View v) {
+            onPokemonListener.onPokemonClick(getAdapterPosition());
+        }
+    }
+    public interface onPokemonListener{
+        void onPokemonClick(int position);
     }
 
 
